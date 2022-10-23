@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Validation</title>
+    <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="Stylesheet" type="text/css"/>
+    <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="Stylesheet" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js" type="text/javascript"></script>
+   
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.0/dist/sweetalert2.all.min.js"></script>
+    
+   
+  </head>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+
+    *
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-image: url(https://picsum.photos/900);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .container {
+      width: 500px;
+      margin: 25px auto;
+      border-radius: 5px;
+      
+      padding: 5px;
+      -webkit-backdrop-filter: blur(0.625em);
+      backdrop-filter: blur(0.625em);
+      display: block;
+      box-shadow: 0em 0 1.25em 0 rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow:  0em 0 1.25em 0 rgba(0, 0, 0, 0.5);
+	  -moz-box-shadow:  0em 0 1.25em 0  rgba(0, 0, 0, 0.5);
+      
+      
+  }
+
+ form {
+      padding: 20px;
+      -moz-border-radius: 4px;
+      -webkit-border-radius: 4px;
+      border-radius: 4px;
+      -webkit-backdrop-filter: blur(0.625em);
+	    backdrop-filter: blur(0.625em);
+	    display: block;
+  }
+  form input:focus {
+    height: 25px;
+    line-height: 25px;
+    background: #fff;
+    background: transparent;
+    box-shadow: none;
+    border: 0.063em solid white;
+    padding: 0 6px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+#txtDate
+        {
+            position: relative;
+            top: -7px;
+            margin-right: 5px;
+            width: 50%;
+        }
+
+
+  
+ 
+input[type=text], input[type=email], input[type=password], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+}
+
+button[type=submit] {
+    background-color: #000000;
+    color: white;
+    padding-bottom: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-left: 35%;
+    border: none;
+    border-radius: 4px;
+    cursor:pointer;
+    margin-bottom: 5%;
+    padding-top: 15px;
+    
+}
+
+button[type=submit]:hover {
+    background-color: pink;
+}
+
+
+.error {
+  font-size: 15px;
+  display: block;
+  margin-bottom: 10px;
+  color: red;
+
+}
+ .h1{
+    position: relative;
+    left: 21%;
+    color:white;
+   text-shadow: 2px 2px #000000;
+    font-weight:bolder;
+    font-size: 33px;
+    
+}
+
+    #txtDate {
+      position: relative;
+      padding-left: 10px;
+    }
+    .date {
+      width: 50%;
+    }
+  </style>
+  <body>
+    <div class="container">
+     
+      <form action="" id="contactForm">
+        <h1 class="h1">Validation Form</h1>
+        <label for="firstname">First Name</label>
+        <input
+          type="text"
+          id="firstname"
+          name="firstname"
+          placeholder="Your first name.."
+        />
+
+        <label for="lastname">Last Name</label>
+        <input
+          type="text"
+          id="lastname"
+          name="lastname"
+          placeholder="Your last name.."
+        />
+
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Your email.."
+        />
+        
+
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Your password.."
+        />
+
+        <label for="confirmpassword">Confirm Password</label>
+        <input
+          type="password"
+          id="confirmpassword"
+          name="confirmpassword"
+          placeholder="Your confirm password.."
+        />
+
+        <label for="phone">Phone</label>
+        <input type="text" id="phone" name="phone" placeholder="Your phone.." />
+
+        <label for="date">Birthdate</label><br />
+        <input
+          class="date"
+          type="text"
+          id="txtDate"
+          placeholder="dd/mm/yyy"
+          name="txtDate"
+          aria-describedby="helpId4"
+        
+        />
+        <br />
+        <span id="lblError" style="color: Red"></span><br />
+        <button class="submit" type="submit"  value="Create Account" data-bs-target="#staticBackdrop">Create Account</button>
+      </form>
+      
+    </div>
+
+    
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.18.0/additional-methods.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+    <script src="./script.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js" type="text/javascript"
+    ></script>
+    <script type="text/javascript">
+
+      $(function () {
+        $("#txtDate").datepicker({
+          changeMonth: true,
+          changeYear: true,
+          showOn: "button",
+          buttonImageOnly: true,
+          buttonImage: "icons8-calendar-24.png",
+          dateFormat: "dd/mm/yy",
+          yearRange: "1900:+0",
+          onSelect: function (dateString, txtDate) {
+            ValidateDOB(dateString);
+          },
+        });
+      });
+      function ValidateDOB(dateString) {
+        var lblError = $("#lblError");
+        var parts = dateString.split("/");
+        var dtDOB = new Date(parts[1] + "/" + parts[0] + "/" + parts[2]);
+        var dtCurrent = new Date();
+        lblError.html("Eligibility 18 years ONLY.");
+        if (dtCurrent.getFullYear() - dtDOB.getFullYear() < 18) {
+          return false;
+        }
+
+        if (dtCurrent.getFullYear() - dtDOB.getFullYear() == 18) {
+         
+          if (dtCurrent.getMonth() < dtDOB.getMonth()) {
+            return false;
+          }
+          if (dtCurrent.getMonth() == dtDOB.getMonth()) {
+           
+            if (dtCurrent.getDate() < dtDOB.getDate()) {
+              return false;
+            }
+          }
+        }
+        lblError.html("");
+        return true;
+      }
+
+      
+    </script>
+    <script>
+      
+    </script>
+    
+  </body>
+</html>

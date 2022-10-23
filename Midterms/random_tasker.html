@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Tasker</title>
+
+    <style>
+        
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,400);
+
+body {
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100vh;
+background-image: url(https://picsum.photos/900);
+
+background-size: cover;
+font-family: 'cabin', sans-serif;
+}
+
+.container{
+-webkit-backdrop-filter: blur(0.625em);
+backdrop-filter: blur(0.625em);
+display: block;
+box-shadow: 0em 0 1.25em 0 rgba(0, 0, 0, 0.5);
+-webkit-box-shadow:  0em 0 1.25em 0 rgba(0, 0, 0, 0.5);
+-moz-box-shadow:  0em 0 1.25em 0  rgba(0, 0, 0, 0.5);
+padding: 20px;
+width: 300px;
+margin: 0 auto;
+margin-top: 40px;
+
+border-radius: 5px;}
+
+form {
+display: inline-block;
+}
+
+input{
+padding: 4px 15px 4px 5px;
+}
+
+#button{
+display: inline-block;
+background-color:#fc999b;
+color:#ffffff;
+border-radius: 5px;
+text-align:center;
+margin-top:2px;
+padding: 5px 15px;
+}
+
+#randomTask{
+    display: inline-block;
+background-color:#ee8700;
+color:#ffffff;
+border-radius: 5px;
+text-align:center;
+margin-top:15px;
+padding: 5px 15px;
+position: relative;
+left: 65%;
+}
+#randomTask:hover{
+    cursor: pointer;
+    opacity: .8;}
+    
+    ol {padding-left: 20px;}
+    
+    ol li {padding: 5px;color:rgb(255, 255, 255);background: rgb(0, 0, 0);}
+    
+    ol li:nth-child(even){background: #ffffff;  color: rgb(0, 0, 0);}
+    
+    .strike{text-decoration: line-through;}
+    
+    
+#button:hover{
+cursor: pointer;
+opacity: .8;
+
+}
+
+li:hover{
+  cursor: pointer;
+ }
+
+    </style>
+</head>
+<body>
+     
+    <div class="container">
+		<h2>To Do List</h2>
+    
+       
+		<form name="toDoList">
+			<input type="text" name="ListItem"/>
+		</form>
+    
+		<div id="button">Add</div>
+        <div id="randomTask">Pick Task</div>
+		<br/>
+		<ol></ol>
+      
+      
+    
+    </div>
+      
+     
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
+        <script src=" http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js" type="text/javascript"
+        ></script>
+        <script src=" https://jsonplaceholder.typicode.com/todos" type="text/javascript"
+        ></script>
+   
+    
+        <script>
+    
+$(document).ready(
+    function(){
+        $('#button').click(
+            function(){
+                var toAdd = $('input[name=ListItem]').val();
+                 $('ol').append('<li>' + toAdd + '</li>');
+            });
+       
+       $("input[name=ListItem]").keyup(function(event){
+          if(event.keyCode == 13){
+            $("#button").click();
+          }         
+      });
+      
+      $(document).on('dblclick','li', function(){
+        $(this).toggleClass('strike').fadeOut('slow');    
+      });
+      
+      $('input').focus(function() {
+        $(this).val('');
+      });
+      
+      $('ol').sortable(); 
+   
+
+      
+    } 
+);
+$(document).ready(function(){
+
+    $("#randomTask").click(function(){
+  
+        $('li').remove();
+  
+        $.ajax({
+  
+            url:"https://jsonplaceholder.typicode.com/todos",
+  
+            datatype:"json",
+  
+            success: function(data){
+  
+                for(let x = 0; x < 10; x++){
+  
+                    let pick = Math.floor(Math.random()*data.length);
+  
+                    $("ol").append("<li style='color:black;background:none'> " +data[pick].title+" </li>");
+  
+    
+  
+                }
+  
+               
+  
+            }
+  
+        });
+  
+        
+  
+    });
+  
+  
+  
+  
+  });
+        </script>  
+</body>
+</html>
